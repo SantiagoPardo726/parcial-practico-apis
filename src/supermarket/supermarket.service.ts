@@ -11,12 +11,12 @@ export class SupermarketService {
         private readonly supermarketRepository: Repository<SupermarketEntity>,
     ) {}
     async findAll(): Promise<SupermarketEntity[]> {
-        return await this.supermarketRepository.find();
+        return await this.supermarketRepository.find({relations: ['cities']});
     }
 
     async findOne(id: string): Promise<SupermarketEntity> {
         const supermarket: SupermarketEntity = await this.supermarketRepository.findOne({
-          where: { id },
+          where: { id }, relations: ['cities']
         });
         if (!supermarket)
           throw new BusinessLogicException(

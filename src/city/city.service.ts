@@ -10,11 +10,11 @@ export class CityService {
     private readonly cityRepository: Repository<CityEntity>,
   ) {}
   async findAll(): Promise<CityEntity[]> {
-    return await this.cityRepository.find();
+    return await this.cityRepository.find({relations: ['supermarkets']});
   }
   async findOne(id: string): Promise<CityEntity> {
     const city: CityEntity = await this.cityRepository.findOne({
-      where: { id },
+      where: { id },relations: ['supermarkets']
     });
     if (!city)
       throw new BusinessLogicException(
