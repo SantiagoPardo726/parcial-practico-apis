@@ -8,6 +8,12 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 import { get } from 'http';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
+enum Countries{
+  ARGENTINA = 'Argentina',
+  ECUADOR = 'Ecuador',
+  Paraguay = 'Paraguay',
+}
+
 describe('CitySupermarketService', () => {
   let service: CitySupermarketService;
   let CityRepository: Repository<CityEntity>;
@@ -45,10 +51,10 @@ describe('CitySupermarketService', () => {
       });
       supermarketsList.push(supermarket);
     }
-
+    const countries = Object.values(Countries);
     city = await CityRepository.save({
       name: faker.location.city.name,
-      country: faker.location.country.name,
+      country: countries[Math.floor(Math.random() * countries.length)] as Countries,
       population: faker.number.int(),
       supermarkets: supermarketsList,
     });

@@ -3,6 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CityEntity } from './city.entity';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
+
+enum Countries{
+  ARGENTINA = 'Argentina',
+  ECUADOR = 'Ecuador',
+  Paraguay = 'Paraguay',
+}
 @Injectable()
 export class CityService {
   constructor(
@@ -25,12 +31,18 @@ export class CityService {
     return city;
   }
   async create(city: CityEntity): Promise<CityEntity> {
+    if(!Object.values(Countries).includes(city.country as Countries)){
+      throw new BusinessLogicException('The given country is not valid', BusinessError.NOT_FOUND);
+    }
     return await this.cityRepository.save(city);
   }
   async update(id: string, city: CityEntity): Promise<CityEntity>{
     const persistedCity: CityEntity = await this.cityRepository.findOne({where: {id}});
     if(!persistedCity){
         throw new BusinessLogicException(`The city with the given id was not found`, BusinessError.NOT_FOUND);
+    }
+    if(!Object.values(Countries).includes(city.country as Countries)){
+      throw new BusinessLogicException('The given country is not valid', BusinessError.NOT_FOUND);
     }
 
     return await this.cityRepository.save({...persistedCity, ...city})
