@@ -1,0 +1,1173 @@
+{
+	"info": {
+		"_postman_id": "bc0bd4a9-d04e-430f-a824-cf25e50d3674",
+		"name": "Cities-Supermarket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29622404"
+	},
+	"item": [
+		{
+			"name": "Add Supermarket to city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add supermarket to city",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"5d5ab16f-ce99-44ec-ade0-de734109b975\",\r\n    \"name\": \"Bogotá DC\",\r\n    \"country\": \"Colombia\",\r\n    \"population\": 30000,\r\n    \"supermarkets\": [\r\n        {\r\n            \"id\": \"8e04713d-4447-4c34-b237-54c018c7171c\",\r\n            \"name\": \"Carulla Caro\",\r\n            \"longitude\": 20,\r\n            \"latitude\": 1,\r\n            \"website\": \"https://www.youtube.com/\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add existing supermarket to inexistent city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add existing supermarket to inexistent city",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add inexisting supermarket to city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add inexisting supermarket to city",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get specific supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get specific supermarket from city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"8e04713d-4447-4c34-b237-54c018c7171c\",\n    \"name\": \"Carulla Caro\",\n    \"longitude\": 20,\n    \"latitude\": 1,\n    \"website\": \"https://www.youtube.com/\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get inexistent supermarket from existing city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The supermarket with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_2}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get inexistent supermarket from existing city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_2}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The supermarket with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get specific supermarket from inexistent city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get specific supermarket from inexistent city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get supermarket from non associated city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The supermarket with the given id is not associated to the city\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_3}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_3}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get supermarket from non associated city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_3}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_3}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The supermarket with the given id is not associated to the city\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all supermarkets form city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all supermarkets form city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"8e04713d-4447-4c34-b237-54c018c7171c\",\n        \"name\": \"Carulla Caro\",\n        \"longitude\": 20,\n        \"latitude\": 1,\n        \"website\": \"https://www.youtube.com/\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all supermarkets from inexistent city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all supermarkets from inexistent city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_1}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update supermarket from city",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_3}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"5d5ab16f-ce99-44ec-ade0-de734109b975\",\n    \"name\": \"Bogotá DC\",\n    \"country\": \"Colombia\",\n    \"population\": 30000,\n    \"supermarkets\": [\n        {\n            \"id\": \"5adcdea4-6c95-4c42-9a55-592379d90e36\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Update supermarkets from inexistent city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_3}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update supermarkets from inexistent city",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_3}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update inexistent supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The supermarket with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update inexistent supermarket from city",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{supermarket_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The supermarket with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete supermarkets from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete supermarkets from city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete supermarket from a non associated city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The supermarket with the given id is not associated to the city\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_3}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_3}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete supermarket from a non associated city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_3}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_3}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The supermarket with the given id is not associated to the city\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete inexistent supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The supermarket with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_2}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_1}}",
+						"supermarkets",
+						"{{supermarket_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete inexistent supermarket from city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_1}}/supermarkets/{{supermarket_id_2}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_1}}",
+								"supermarkets",
+								"{{supermarket_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The supermarket with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete supermarket from inexistent  city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The city with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+					"host": [
+						"{{apiurl}}"
+					],
+					"path": [
+						"cities",
+						"{{city_id_2}}",
+						"supermarkets",
+						"{{supermarket_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete supermarket from inexistent  city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiurl}}/cities/{{city_id_2}}/supermarkets/{{supermarket_id_1}}",
+							"host": [
+								"{{apiurl}}"
+							],
+							"path": [
+								"cities",
+								"{{city_id_2}}",
+								"supermarkets",
+								"{{supermarket_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The city with the given id was not found\"\n}"
+				}
+			]
+		}
+	]
+}
