@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  BusinessError,
-  BusinessLogicException,
-} from '../shared/errors/business-errors';
 import { CityEntity } from './city.entity';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 @Injectable()
 export class CityService {
@@ -19,39 +16,35 @@ export class CityService {
     const city: CityEntity = await this.cityRepository.findOne({
       where: { id },
     });
-    if (!city) {
-      return new BusinessLogicException(
+    if (!city)
+      throw new BusinessLogicException(
         'The city with the given id was not found',
         BusinessError.NOT_FOUND,
       );
-    }
+
     return city;
   }
   async create(city: CityEntity): Promise<CityEntity> {
     return await this.cityRepository.save(city);
   }
-  async update(id: string, city: CityEntity): Promise<CityEntity> {
-    const persistedCity: CityEntity = await this.cityRepository.findOne({
-      where: { id },
-    });
-    if (!persistedCity) {
-      return new BusinessLogicException(
-        'The city with the given id was not found',
-        BusinessError.NOT_FOUND,
-      );
+  async update(id: string, city: CityEntity): Promise<CityEntity>{
+    const persistedCity: CityEntity = await this.cityRepository.findOne({where: {id}});
+    if(!persistedCity){
+        throw new BusinessLogicException(`The city with the given id was not found`, BusinessError.NOT_FOUND);
     }
-    return await this.cityRepository.save({ ...persistedCity, ...city });
-  }
+
+    return await this.cityRepository.save({...persistedCity, ...city})
+}
   async delete(id: string) {
     const city: CityEntity = await this.cityRepository.findOne({
       where: { id },
     });
-    if (!city) {
-      return new BusinessLogicException(
+    if (!city)
+      throw new BusinessLogicException(
         'The city with the given id was not found',
         BusinessError.NOT_FOUND,
       );
-    }
-    return await this.cityRepository.remove(city);
+
+    await this.cityRepository.remove(city);
   }
 }

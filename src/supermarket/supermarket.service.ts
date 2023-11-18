@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SupermarketEntity } from './supermarket.entity';
 import { Repository } from 'typeorm';
-import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 
 @Injectable()
 export class SupermarketService {
@@ -15,45 +15,41 @@ export class SupermarketService {
     }
 
     async findOne(id: string): Promise<SupermarketEntity> {
-        const supermarket:SupermarketEntity = await this.supermarketRepository.findOne({
-            where: { id },
+        const supermarket: SupermarketEntity = await this.supermarketRepository.findOne({
+          where: { id },
         });
-        if (!supermarket) {
-            return new BusinessLogicException(
-                'The supermarket with the given id was not found',
-                BusinessError.NOT_FOUND,
-            );
-        }
+        if (!supermarket)
+          throw new BusinessLogicException(
+            'The supermarket with the given id was not found',
+            BusinessError.NOT_FOUND,
+          );
+    
         return supermarket;
-    }
+      }
 
     async create(supermarket: SupermarketEntity): Promise<SupermarketEntity> {
         return await this.supermarketRepository.save(supermarket);
     }
 
-    async update(id: string, supermarket: SupermarketEntity): Promise<SupermarketEntity> {
-        const persistedSupermarket: SupermarketEntity = await this.supermarketRepository.findOne({
-            where: { id },
-        });
-        if (!persistedSupermarket) {
-            return new BusinessLogicException(
-                'The supermarket with the given id was not found',
-                BusinessError.NOT_FOUND,
-            );
+    async update(id: string, supermarket: SupermarketEntity): Promise<SupermarketEntity>{
+        const persistedSupermarket: SupermarketEntity = await this.supermarketRepository.findOne({where: {id}});
+        if(!persistedSupermarket){
+            throw new BusinessLogicException(`The supermarket with the given id was not found`, BusinessError.NOT_FOUND);
         }
-        return await this.supermarketRepository.save({ ...persistedSupermarket, ...supermarket });
+    
+        return await this.supermarketRepository.save({...persistedSupermarket, ...supermarket})
     }
 
     async delete(id: string) {
         const supermarket: SupermarketEntity = await this.supermarketRepository.findOne({
-            where: { id },
+          where: { id },
         });
-        if (!supermarket) {
-            return new BusinessLogicException(
-                'The supermarket with the given id was not found',
-                BusinessError.NOT_FOUND,
-            );
-        }
-        return await this.supermarketRepository.remove(supermarket);
-    }
+        if (!supermarket)
+          throw new BusinessLogicException(
+            'The supermarket with the given id was not found',
+            BusinessError.NOT_FOUND,
+          );
+    
+        await this.supermarketRepository.remove(supermarket);
+      }
 }

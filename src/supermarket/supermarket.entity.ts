@@ -8,6 +8,9 @@ export class SupermarketEntity {
     id:string;
 
     @Column()
+    name:string;
+
+    @Column()
     longitude:number;
 
     @Column()
