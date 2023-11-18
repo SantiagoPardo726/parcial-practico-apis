@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { CityModule } from './city/city.module';
 import { SupermarketModule } from './supermarket/supermarket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CitySupermarketModule } from './city-supermarket/city-supermarket.module';
 
 @Module({
   imports: [CityModule, SupermarketModule,
@@ -18,7 +19,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         dropSchema: true,
         synchronize: true,
         keepConnectionAlive: true
-      })],
+      }),
+      CitySupermarketModule],
   controllers: [AppController],
   providers: [AppService],
 })
